@@ -30,8 +30,14 @@ function Login() {
        <>
         {Error && <p className="">{Error}</p>}
         <form onSubmit={handleSubmit(login)} className="">
-            <InputFiled type="email" label="email" className="" placeHolder="email"/>
-            <InputFiled type="password" label="password" className="" placeHolder="password"/>
+            <InputFiled type="email" label="email" className="" placeHolder="email" {...register("email",{validate:{
+                matchPatern:(value)=>
+                  { /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g.test(value)||"Enter Valid Email"
+            }}})}/>
+            <InputFiled type="password" label="password" className="" placeHolder="password" {...register("password",{
+                
+            })}/>
+            <Button type={submit} child="Submit"/>
         </form>
         
        </>
