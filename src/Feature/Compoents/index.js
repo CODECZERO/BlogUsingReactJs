@@ -2,17 +2,29 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import Logout from "./Header/logout";
 import Container from "./Container/container";
-import {LodingScreenPage,Loading} from "./Pages/lodingScreen";
-import Button from "./Pages/Button";
-import {InputFiled} from "./Pages/InputFiled";
-import Card from "./Pages/Card";
+import {LodingScreenPage,Loading} from "./component/lodingScreen";
+import Button from "./component/Button";
+import Input from "./component/InputFiled";
+import Card from "./component/Card";
+import Login from "./component/Login";
+import Singup from "./component/singup";
+import Select from "./component/select";
+import RTE from "./RTE";
+import Postform from "./PostForn/Postform";
+import Procted from "./AuthLayou"
 export  {Header,
     Footer,
+    Procted,
     Logout,
     Container,
     LodingScreenPage,
     Loading,
     Button,
-    InputFiled,
-    Card
+    Input,
+    Card,
+    Login,
+    Singup,
+    Select,
+    RTE,
+    Postform
 }

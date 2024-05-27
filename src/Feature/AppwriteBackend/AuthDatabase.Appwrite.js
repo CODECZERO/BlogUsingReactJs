@@ -69,7 +69,7 @@ export class DataBaseAuth {
         }
     }
 
-    async getPosts(query = [Query.equal("isPublish", "")]) {
+    async getPosts(query = [Query.equal("isPublish", true)]) {
         try {
             return await this.database.listDocuments(
                 import.meta.env.VITE_APPWRITE_DATABASE_ID,
@@ -91,10 +91,11 @@ export class DataBaseAuth {
             return await this.bucket.createFile(
                 import.meta.env.VITE_APPWRITE_STROAGE_ID,
                 ID.unique(),
-                file
+                file,
+                console.log(file)
             )
         } catch (error) {
-            console.log("file not upload");
+            console.log(`file not upload${error}`);
             return false;
         }
     }
@@ -118,7 +119,7 @@ export class DataBaseAuth {
                 fileID
             )
         } catch (error) {
-
+            throw error;
         }
     }
 }
