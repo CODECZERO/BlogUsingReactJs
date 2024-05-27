@@ -23,6 +23,8 @@ export default function Post() {
         } else navigate("/");
     }, [slug, navigate]);
 
+    console.log(slug, post);
+
     const deletePost = () => {
         DataBaseService.deletPost(post.$id).then((status) => {
             if (status) {
