@@ -1,45 +1,55 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import DataBaseService from '../../AppwriteBackend/AuthDatabase.Appwrite'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import DataBaseService from '../../AppwriteBackend/AuthDatabase.Appwrite';
+import { Link } from 'react-router-dom';
 
-function Card({ $id, Title, thumbnail_Image }) {
-    const [Post, setPost] = useState("")
-    useEffect(() => {
-        if (thumbnail_Image) {
-            const image = DataBaseService.getFilePreview(thumbnail_Image).then((res) => { return setPost(res) });
-            if (image) {
-                setPost(image);
-            }
+function Card({ $id, Title, thumbnail_Image, BlogContent, userName }) {
+  const [Post, setPost] = useState("");
+  const data = BlogContent.replace(/<[^>]*>/g, '');
+  const MaxText = data.length > 100 ? `${data.substring(0, 100).replace(/\s+/g, ' ')}...` : data.replace(/\s+/g, ' ');
+
+  useEffect(() => {
+    async function fetchThumbnail() {
+      if (thumbnail_Image && !Post.href) { // Check if thumbnail_Image exists and Post.href is empty
+        try {
+          const res = await DataBaseService.getFilePreview(thumbnail_Image);
+          setPost(res);
+        } catch (error) {
+          console.error("Error fetching thumbnail:", error);
         }
-    }, [])
-    console.log($id)
-    return (
-        <Link to={`/post/${$id}`}>
+      }
+    }
 
+    fetchThumbnail();
+  }, [thumbnail_Image, Post.href]);
 
-
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img className="rounded-t-lg" src={Post.href} alt={Title} />
-                </a>
-                <div className="p-5">
-                    <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{Title}</h5>
-                    </a>
-                    <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Read more
-                        <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-
-        </Link>
-    )
+  return (
+    <Link to={`/post/${$id}`}>
+      <div className="mx-auto max-w-[32rem] bg-white rounded-lg shadow-md"> {/* Centered, wider width, white background, rounded corners, shadow */}
+        <div className="relative overflow-hidden rounded-t-lg"> {/* Rounded top corners for image section */}
+          <img
+            src={Post.href}
+            alt={Title}
+            className="w-full h-32 object-cover rounded" 
+          />
+        </div>
+        <div className="p-4"> {/* Maintained padding for content */}
+          <h4 className="text-xl font-semibold text-gray-900 mb-2"> {/* Title - smaller font, bolder font, darker color */}
+            {Title}
+          </h4>
+          <p className="text-base text-gray-700 line-clamp-2"> {/* Description - smaller font, limit to 2 lines with ellipsis */}
+            {MaxText}
+          </p>
+        </div>
+        <div className="flex items-center justify-between p-2 border-t border-gray-200"> {/* Divider line at bottom */}
+          <p className="text-gray-700">
+            {userName}
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
 }
 
+export default Card;
 
 
-export default Card

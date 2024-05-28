@@ -49,4 +49,18 @@ function Loading() {
         </>
     )
 }
-export{ LodingScreenPage, Loading };
+function LoadingScreenBlog() {
+    return (
+        <>
+
+
+            <div class="h-screen flex items-center justify-center">
+                <div class="w-5 h-5 rounded-full animate-pulse bg-blue-600"></div>
+                <div class="w-5 h-5 rounded-full animate-pulse bg-blue-600"></div>
+                <div class="w-5 h-5 rounded-full animate-pulse bg-blue-600"></div>
+            </div>
+
+        </>
+    )
+}
+export { LodingScreenPage, Loading, LoadingScreenBlog };

@@ -11,7 +11,7 @@ function Header() {
 
   const NavRender = [{
     name: "Home",
-    slug: "/",
+    slug: "",
     active: true
   },
   {
@@ -23,11 +23,6 @@ function Header() {
     name:"Singup",
     slug:"/Singup",
     active:!Auth
-  },
-  {
-    name: "Logout",
-    slug: "/Logout",
-    active: Auth
   },
   {
     name:"AllPost",

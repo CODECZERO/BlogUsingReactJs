@@ -11,11 +11,13 @@ import EditPost from "./Feature/Compoents/pages/EditPot.jsx"
 import Login from "./Feature/Compoents/pages/login.jsx"
 import Post from "./Feature/Compoents/pages/post.jsx"
 import Singup from "./Feature/Compoents/pages/singup.jsx"
+import Home from './Feature/Compoents/pages/Home.jsx'
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
+    <Route path='' element={<Home />}/> 
     <Route path='/Allpost' element={<Allpost />} />
     <Route path='/Addpost' element={<AddPost />} />
     <Route path='/EditPost/:slug' element={<EditPost />} />

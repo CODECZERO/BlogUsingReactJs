@@ -2,7 +2,7 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import Logout from "./Header/logout";
 import Container from "./Container/container";
-import {LodingScreenPage,Loading} from "./component/lodingScreen";
+import {LodingScreenPage,Loading,LoadingScreenBlog} from "./component/lodingScreen";
 import Button from "./component/Button";
 import Input from "./component/InputFiled";
 import Card from "./component/Card";
@@ -26,5 +26,6 @@ export  {Header,
     Singup,
     Select,
     RTE,
-    Postform
+    Postform,
+    LoadingScreenBlog
 }

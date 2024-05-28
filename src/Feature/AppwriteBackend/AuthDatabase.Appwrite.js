@@ -10,14 +10,14 @@ export class DataBaseAuth {
         this.bucket = new Storage(this.clinet);
     }
 
-    async createPost({ Title, slug, userId, BlogContent, PublishDate, thumbnail_Image, ImagesInBlog, isPublish }) {
+    async createPost({ Title, slug, userId, BlogContent, PublishDate, thumbnail_Image, ImagesInBlog, isPublish,userName }) {
         try {
             return await this.database.createDocument(
                 import.meta.env.VITE_APPWRITE_DATABASE_ID,
                 import.meta.env.VITE_APPWRITE_COLLECTION_ID,
                 slug,
                 {
-                    Title, userId, BlogContent, PublishDate, thumbnail_Image, ImagesInBlog, isPublish
+                    Title, userId, BlogContent, PublishDate, thumbnail_Image, ImagesInBlog, isPublish,userName
                 }
             )
         } catch (error) {
@@ -61,7 +61,7 @@ export class DataBaseAuth {
             await this.database.getDocument(
                 import.meta.env.VITE_APPWRITE_DATABASE_ID,
                 import.meta.env.VITE_APPWRITE_COLLECTION_ID,
-                slug
+                slug,
             )
         } catch (error) {
             console.log(`Document not found ${error}`);

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Input } from "../index";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,7 @@ function Singup() {
     const Nav = useNavigate();
     const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
+    const [err, seterr] = useState("");
     const singup = async (data) => {
         try {
             const createUser = await authService.CreateAccount(data);
@@ -24,29 +25,31 @@ function Singup() {
                 }
             }
         } catch (error) {
-          throw error
+            throw error
         }
     }
     return (
-        <>
+        <>   <p>{err}</p>
             <div className="w-full max-w-sm p-4 bg-white borde border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center">
-
                 <form onSubmit={handleSubmit(singup)}>
                     <Input type="email" label="email" className="" placeholder="email" {...register("email", {
-                        required:true,validate: {
+                        required: true, validate: {
                             matchPatern: (value) => {
-                                /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g.test(value) || "Enter Valid Email";
+                                /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g.test(value) || seterr("Enter Valid Email");
                             }
                         }
                     })} />
                     <Input type="password" label="password" className="" placeholder="password" {...register("password", {
-                         required:true,validate:{matchPatern: (value) => {
-                            /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(value) || "Enter password greater than 8 and with special charcters";
-                        }}
+                        required: true, validate: {
+                            matchPatern: (value) => {
+                                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(value) || seterr("Enter password greater than 8 and with special charcters");
+                            }
+                        }
                     })} />
-                    <Input type="text" label="name" className="" placeholder="name" {...register("name", { required:true,validate:{
+                    <Input type="text" label="name" className="" placeholder="name" {...register("name", {
+                        required: true, validate: {
 
-                    }
+                        }
 
                     })} />
 
