@@ -21,7 +21,6 @@ function Postform({ post }) {
   });
   const Nav = useNavigate();
   //const userData = useSelector((state )=> state.Auth.userPayload);
-  console.log(userData.name)
   const submit = async (data) => {
     if (post) {
       const file = data.image[0] ? await DataBaseService.uploadFile(data.image[0]) : null;

@@ -14,11 +14,10 @@ export default function Post() {
 
     const userData = useSelector((state) => state.Auth.userPayload);
     const isAuthor = post && userData ? post.userId === userData.userId : false;
-    console.log(isAuthor,post.userId,userData.userId);
+    console.log(isAuthor);
     useEffect(() => {
         if (slug) {
             DataBaseService.getPost(slug).then((post) => {
-                console.log(post)
                 if (post) {
                     setPost(post)
                 }

@@ -94,7 +94,6 @@ export class DataBaseAuth {
                 import.meta.env.VITE_APPWRITE_STROAGE_ID,
                 ID.unique(),
                 file,
-                console.log(file)
             )
         } catch (error) {
             console.log(`file not upload${error}`);
