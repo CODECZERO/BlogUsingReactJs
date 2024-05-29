@@ -15,7 +15,6 @@ function Allpost() {
             }
         })
     }, [])
-    console.log(posts)
 
     return !loading ? (
         <>
