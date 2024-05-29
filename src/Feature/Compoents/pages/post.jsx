@@ -4,6 +4,7 @@ import { Button, Container } from "../index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import DataBaseService from "../../AppwriteBackend/AuthDatabase.Appwrite";
+import { LodingScreenPage } from "../index";
 
 export default function Post() {
     const [post, setPost] = useState(null);
@@ -74,5 +75,5 @@ export default function Post() {
                 </div>
             </Container>
         </div>
-    ) : null;
+    ) : <LodingScreenPage/>;
 }
