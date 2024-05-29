@@ -13,8 +13,8 @@ export default function Post() {
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.Auth.userPayload);
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
-    console.log(isAuthor,post.$id,userData.$id);
+    const isAuthor = post && userData ? post.userId === userData.userId : false;
+    console.log(isAuthor,post.userId,userData.userId);
     useEffect(() => {
         if (slug) {
             DataBaseService.getPost(slug).then((post) => {
