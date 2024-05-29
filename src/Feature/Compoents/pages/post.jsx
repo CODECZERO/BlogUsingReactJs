@@ -14,7 +14,7 @@ export default function Post() {
 
     const userData = useSelector((state) => state.Auth.userPayload);
     const isAuthor = post && userData ? post.userId === userData.$id : false;
-    console.log(isAuthor,post.$id,userData.$id);
+    console.log(isAuthor);
     useEffect(() => {
         if (slug) {
             DataBaseService.getPost(slug).then((post) => {
@@ -74,5 +74,5 @@ export default function Post() {
                 </div>
             </Container>
         </div>
-    ) : <LodingScreenPage/>;
+    ) : <LodingScreenPage/>
 }
