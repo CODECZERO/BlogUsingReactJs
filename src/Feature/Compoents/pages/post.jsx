@@ -14,8 +14,7 @@ export default function Post() {
     const isAuthor = post && userData ? post.userId === userPayload.$id : false;
 
     useEffect(() => {
-        const result=DataBaseService.getPost(slug).then(()=>{});
-        console.log(result);
+        DataBaseService.getPost(slug);
     }, [slug,navigate]);
 
 

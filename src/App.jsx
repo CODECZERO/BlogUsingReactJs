@@ -4,6 +4,7 @@ import authService from './Feature/AppwriteBackend/Auth.Appwrite';
 import { login, logout } from './Feature/store/authSlice';
 import { Footer, Header, LodingScreenPage} from './Feature/Compoents';
 import { Outlet } from "react-router-dom";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 function App() {
   const [loading, setloading] = useState(true);
@@ -30,13 +31,16 @@ function App() {
           </main>
           <Footer />
         </div>
+        <SpeedInsights/>
       </div>
     </>
   ) :
     (
 
-
+      <>
       <LodingScreenPage/>
+      <SpeedInsights/>
+      </>
 
 
     )

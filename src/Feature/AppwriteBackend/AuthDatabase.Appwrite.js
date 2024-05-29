@@ -58,11 +58,13 @@ export class DataBaseAuth {
 
     async getPost(slug) {
         try {
-            await this.database.getDocument(
+           const res=await this.database.getDocument(
                 import.meta.env.VITE_APPWRITE_DATABASE_ID,
                 import.meta.env.VITE_APPWRITE_COLLECTION_ID,
                 slug,
             )
+            return res;
+            
         } catch (error) {
             console.log(`Document not found ${error}`);
             return false;
