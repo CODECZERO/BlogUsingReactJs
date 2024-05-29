@@ -14,8 +14,7 @@ export default function Post() {
 
     const userData = useSelector((state) => state.Auth.userPayload);
     const isAuthor = post && userData ? post.userId === userData.$id : false;
-
-
+    console.log(isAuthor,post.$id,userData.$id);
     useEffect(() => {
         if (slug) {
             DataBaseService.getPost(slug).then((post) => {
@@ -57,12 +56,11 @@ export default function Post() {
                     {isAuthor && (
                         <div className="absolute right-6 top-6">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
-                                    Edit
+                                <Button bgColor="bg-green-500" className="mr-3" child="Edit">
                                 </Button>
                             </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
-                                Delete
+                            <Button bgColor="bg-red-500" onClick={deletePost} child="Delete">
+                                
                             </Button>
                         </div>
                     )}
