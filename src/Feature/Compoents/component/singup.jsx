@@ -5,22 +5,28 @@ import { useDispatch } from "react-redux";
 import { login as authLogin } from '../../store/authSlice';
 import authService from '../../AppwriteBackend/Auth.Appwrite';
 import { useNavigate } from 'react-router-dom';
+import { LodingScreenPage } from '../index';
 
 function Singup() {
     const Nav = useNavigate();
     const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
+    const [loading,setloading]=useState(false);
     const [err, seterr] = useState("");
     const singup = async (data) => {
+        
         try {
+            setloading(true)
             const createUser = await authService.CreateAccount(data);
             if (createUser) {
                 const userPayload = await authService.getCurrentUser();
                 if (userPayload) {
                     dispatch(authLogin(userPayload));
+                    setloading(false)
                     Nav("/");
                 }
                 else {
+                    setloading(false)
                     Nav("/login");
                 }
             }
@@ -28,8 +34,9 @@ function Singup() {
             throw error
         }
     }
-    return (
-        <>   <p>{err}</p>
+    return !loading ? (
+        <>
+            <p>{err}</p>
             <div className="w-full max-w-sm p-4 bg-white borde border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center">
                 <form onSubmit={handleSubmit(singup)}>
                     <Input type="email" label="email" className="" placeholder="email" {...register("email", {
@@ -53,12 +60,22 @@ function Singup() {
 
                     })} />
 
-                    <Button type="submit" child="Submit" />
+                    <Button type="submit" child="Singup" />
 
                 </form>
             </div>
         </>
-    )
+    ) :
+        (
+
+
+            <LodingScreenPage />
+
+
+        )
+
+
+
 }
 
 export default Singup
