@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Button, Container } from "../index";
+import {  Container } from "../index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import DataBaseService from "../../AppwriteBackend/AuthDatabase.Appwrite";
@@ -14,7 +14,7 @@ export default function Post() {
 
     const userData = useSelector((state) => state.Auth.userPayload);
     const isAuthor = post && userData ? post.userId === userData.$id : false;
-    console.log(isAuthor);
+    console.log(isAuthor,post.$id,userData.$id);
     useEffect(() => {
         if (slug) {
             DataBaseService.getPost(slug).then((post) => {
@@ -53,7 +53,15 @@ export default function Post() {
                         className="rounded-xl"
                     />
 
-                    {isAuthor && (
+                  
+                </div>
+                <div className="w-full mb-6">
+                    <h1 className="text-2xl font-bold">{post.Title}</h1>
+                </div>
+                <div className="browser-css">
+                    {parse(post.BlogContent)}
+                </div>
+                {isAuthor && (
                         <div className="absolute right-6 top-6">
                             <Link to={`/edit-post/${post.$id}`}>
                                 <button bgColor="bg-green-500" className="mr-3" >
@@ -65,13 +73,6 @@ export default function Post() {
                             </button>
                         </div>
                     )}
-                </div>
-                <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.Title}</h1>
-                </div>
-                <div className="browser-css">
-                    {parse(post.BlogContent)}
-                </div>
             </Container>
         </div>
     ) : <LodingScreenPage/>
