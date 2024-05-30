@@ -1,20 +1,23 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import DataBaseService from '../../AppwriteBackend/AuthDatabase.Appwrite';
 import { Card, Container } from "../index";
-
 import { LoadingScreenBlog } from '../index';
 function Allpost() {
     const [posts, setPosts] = useState([]);
     const [loading,setloading]=useState(true);
-
     useEffect(() => {
-        DataBaseService.getPosts([]).then((posts) => {
-            if (posts) {
-                setloading(false);
-                return setPosts(posts.documents)
-            }
-        })
+       
+            DataBaseService.getPosts([]).then((PostData) => {
+                if (PostData) {
+                    setloading(false);
+                    return setPosts(PostData.documents);
+                }
+            })
+        
+      
     }, [])
+
+
 
     return !loading ? (
         <>

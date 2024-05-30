@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {  Container } from "../index";
+import {  Button,Container } from "../index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import DataBaseService from "../../AppwriteBackend/AuthDatabase.Appwrite";
@@ -13,8 +13,8 @@ export default function Post() {
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.Auth.userPayload);
-    const isAuthor = post && userData ? post.userId === userData.userId : false;
-    console.log(isAuthor);
+    const isAuthor = post && userData ? post.userId === userData.$id : false;
+  
     useEffect(() => {
         if (slug) {
             DataBaseService.getPost(slug).then((post) => {
@@ -26,6 +26,7 @@ export default function Post() {
         } else navigate("/");
     }, [slug, navigate]);
 
+    console.log(isAuthor);
 
     const deletePost = () => {
         DataBaseService.deletPost(post.$id).then((status) => {
@@ -42,19 +43,17 @@ export default function Post() {
     }
     return post ? (
         
-        <div className="py-8">
+        <div className=" py-8 flex items-center justify-center">
             <Container> 
             {ImageRender()}
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+                <div className="flex justify-center items-center">
                     <img
                         src={Image}
                         alt={post.title}
                         className="rounded-xl"
                     />
-
-                  
                 </div>
-                <div className="w-full mb-6">
+                <div className="w-full mb-30">
                     <h1 className="text-2xl font-bold">{post.Title}</h1>
                 </div>
                 <div className="browser-css">
@@ -63,13 +62,13 @@ export default function Post() {
                 {isAuthor && (
                         <div className="absolute right-6 top-6">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <button bgColor="bg-green-500" className="mr-3" >
-                                    Edit
-                                </button>
+                                <Button bgColor="bg-green-500" child="Edit" className="mr-3" >
+                                 
+                                </Button>
                             </Link>
-                            <button bgColor="bg-red-500" onClick={deletePost}>
-                                Delete
-                            </button>
+                            <Button bgColor="bg-red-500"  onClick={deletePost} child="Delete">
+                             
+                            </Button>
                         </div>
                     )}
             </Container>

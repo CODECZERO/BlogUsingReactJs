@@ -37,7 +37,7 @@ function Singup() {
     return !loading ? (
         <>
             <p>{err}</p>
-            <div className="w-full max-w-sm p-4 bg-white borde border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center">
+            <div className="w-full max-w-sm p-4 bg-white borde border-gray-200 rounded-lg shadow  mt-20 mb-20 sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center">
                 <form onSubmit={handleSubmit(singup)}>
                     <Input type="email" label="email" className="" placeholder="email" {...register("email", {
                         required: true, validate: {
