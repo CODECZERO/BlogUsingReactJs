@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
     staus:false,
-    PostData:null
+    PostData:[{}]
 }
 
 const PostSlice=createSlice({

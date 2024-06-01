@@ -3,7 +3,7 @@ import DataBaseService from '../../AppwriteBackend/AuthDatabase.Appwrite';
 import { Container, Postform } from "../index";
 import { useNavigate, useParams } from 'react-router-dom';
 function EditPost() {
-    const [Post, setPost] = useState([]);
+    const [post, setPost] = useState([]);
     const { slug } = useParams();
     const Nav = useNavigate();
     useEffect( () => {
@@ -19,7 +19,7 @@ function EditPost() {
         <>
             <h1>Edit Post</h1>
             <Container>
-                <Postform post={Post} />
+                <Postform post={post} />
             </Container>
         </>
     )
