@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Button, Container } from "../index";
+import { Button} from "../index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import DataBaseService from "../../AppwriteBackend/AuthDatabase.Appwrite";
@@ -44,7 +44,7 @@ export default function Post() {
     return post ? (
         <>
             {isAuthor && (
-                <div className="flex space-x-2 bg-slate-300 items-center justify-center ">
+                <div className="flex space-x-2 items-center justify-center ">
                     <Link to={`/EditPost/${post.$id}`}>
                         <Button bgColor="bg-green-500" child="Edit" className="mr-3" />
                     </Link>
@@ -58,7 +58,8 @@ export default function Post() {
                     <img src={imageUrl} alt={post.Title} width={"500px"} />
                 </div>
                 <div className="text-xl mt-10  text-black md:text-4xl text-center">{post.Title}</div>
-                <div className="mt-23 text-base mx-8 md:text-lg md:pl-1 bg-slate-100">{parse(post.BlogContent)}</div>
+                <div className="mt-23 text-sm space-x-2 p-8 md:p-11 md:pl-11 mx-8 md:text-lg font-sans bg-slate-100">{parse(post.BlogContent)}</div>
+                
             </div>
         </>
 

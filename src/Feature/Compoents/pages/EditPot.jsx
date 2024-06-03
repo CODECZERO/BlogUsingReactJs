@@ -7,17 +7,18 @@ function EditPost() {
     const { slug } = useParams();
     const Nav = useNavigate();
     useEffect( () => {
-      if(slug){
-        DataBaseService.getPost(slug).then((res) => { if(res) setPost(res) }).catch((error) => { throw error });
+     const getData= async ()=>{ if(slug){
+       await DataBaseService.getPost(slug).then((res) => { if(res)
+       return setPost(res)}).catch((error) => { throw error });
       }
       else {
         Nav("/");
-      }
-    })
-
+      }}
+      getData()
+    },[slug,Nav])
     return (
         <>
-            <h1>Edit Post</h1>
+            <h1 className='text-2xl text-slate-950 text-center'>Editing Post</h1>
             <Container>
                 <Postform post={post} />
             </Container>
