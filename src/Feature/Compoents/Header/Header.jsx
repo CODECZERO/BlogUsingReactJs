@@ -36,7 +36,7 @@ function Header() {
   }
   ]
   return (
-    <header className='py-3 shadow bg-gray-500 w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between'>
+    <header className='py-3 shadow bg-slate-300 w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between'>
     <Container >
       <nav className='flex'>
         <ul className='flex ml-auto'>

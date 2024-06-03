@@ -36,7 +36,7 @@ function Allpost() {
         (
 
 
-            <LoadingScreenBlog />
+            <LoadingScreenBlog/>
 
 
         )

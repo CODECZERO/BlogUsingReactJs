@@ -44,29 +44,21 @@ export default function Post() {
     return post ? (
         <>
             {isAuthor && (
-                <div className="flex space-x-2">
+                <div className="flex space-x-2 bg-slate-300 items-center justify-center ">
                     <Link to={`/EditPost/${post.$id}`}>
                         <Button bgColor="bg-green-500" child="Edit" className="mr-3" />
                     </Link>
                     <Button bgColor="bg-red-500" onClick={deletePost} child="Delete" />
                 </div>
             )}
-            <div className="py-8 flex items-center justify-center">
-                <Container className="flex flex-col space-y-8">
-                    {imageUrl && (
-                        <div className="w-full rounded-lg overflow-hidden">
-                            <img src={imageUrl} alt={post.title} className="w-full h-auto object-cover" /><br />
-                        </div>
-                    )}
-                    <br />
-                    <div className="flex flex-col space-y-4 mt-96 "> {/* Added flex-col and space-y-4 for styling */}
-                        <div className="flex justify-between items-center">
-                            <h1 className="text-2xl font-bold text-center">{post.Title}</h1>
+          
 
-                        </div>
-                        <div className="browser-css">{parse(post.BlogContent)}</div>
-                    </div>
-                </Container>
+            <div className="flex-col items-center justify-center bg-slate-300 ">
+                <div className=" ml-14 mt-7 h-[200px] w-[300px] md:ml-[800px] md:h-full bg-black">
+                    <img src={imageUrl} alt={post.Title} width={"500px"} />
+                </div>
+                <div className="text-xl mt-10  text-black md:text-4xl text-center">{post.Title}</div>
+                <div className="mt-23 text-base mx-8 md:text-lg md:pl-1 bg-slate-100">{parse(post.BlogContent)}</div>
             </div>
         </>
 
