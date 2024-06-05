@@ -15,7 +15,7 @@ Currently, two official plugins are available:
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Features](#features)databases
+- [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Folder Structure](#folder-structure)
