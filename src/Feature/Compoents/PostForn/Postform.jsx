@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Input, Select, RTE, LodingScreenPage } from "./../index";
 import DataBaseService from '../../AppwriteBackend/AuthDatabase.Appwrite';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 
 function Postform({ post }) {
   const date = new Date();
@@ -24,7 +25,8 @@ function Postform({ post }) {
   const submit = async (data) => {
     setLoading(true)
     if (post) {
-      const file = data.image[0] ? await DataBaseService.uploadFile(data.image[0]) : null;
+      const file = data.thumbnail_Image[0] ? await DataBaseService.uploadFile(data.thumbnail_Image[0]) : null;
+      console.log(data.thumbnail_Image);
 
       if (file) {
         DataBaseService.deletFile(post.thumbnail_Image);
@@ -37,7 +39,7 @@ function Postform({ post }) {
 
       if (dbPost) {
         setLoading(false);
-        navigate(`/post/${dbPost.$id}`);
+        Nav(`/post/${dbPost.$id}`);
       }
     } else {
       const file = await DataBaseService.uploadFile(data.thumbnail_Image[0]);
@@ -75,7 +77,6 @@ function Postform({ post }) {
 
     return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
-  console.log(post.Title)
   return !loading ? (
     <>
       <div>
@@ -83,8 +84,7 @@ function Postform({ post }) {
           <div className="w-2/3 px-2">
             <Input
               label="Title"
-              defaultValue={post.Title?post.Title:"Title"}
-              placeholder={post.Title?post.Title:"Title"}
+              placeholder="Title"
               className="mb-4"
               {...register("Title", { required: true })}
             />
@@ -97,7 +97,7 @@ function Postform({ post }) {
                 setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
               }}
             />
-            <RTE label="BlogContent :" name="BlogContent" control={control} defaultValue={getValues("BlogContent")} />
+            <RTE label="BlogContent :" name="BlogContent" control={control} defaultValue={post?post.BlogContent:""} />
           </div>
           <div className="w-1/3 px-2">
             <Input
