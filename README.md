@@ -107,7 +107,6 @@ BlogUsingReactJs/
 ## License
 This project is licensed under the MIT License - see the [https://github.com/CODECZERO/BlogUsingReactJs/blob/main/MIT-LICENSE.txt]  file for details.
 
-Project Link: [https://github.com/yourusername/blog-website](https://github.com/yourusername/blog-website)
 
 ---
 
