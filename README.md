@@ -15,8 +15,7 @@ Currently, two official plugins are available:
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Features](#features)
-- [Demo](#demo)
+- [Features](#features)databases
 - [Installation](#installation)
 - [Usage](#usage)
 - [Folder Structure](#folder-structure)
@@ -30,8 +29,6 @@ A blog website built using React.js. This project provides a platform for users 
 - Create, edit, and delete blog posts
 - Responsive design
 
-## Demo
-[Live Demo](https://yourwebsite.com) (Replace with your live demo link)
 
 ## Installation
 
@@ -108,7 +105,7 @@ BlogUsingReactJs/
 
 
 ## License
-This project is licensed under the MIT License - see the [https://github.com/CODECZERO/BlogUsingReactJs/blob/main/MIT-LICENSE.txt](LICENSE) file for details.
+This project is licensed under the MIT License - see the [https://github.com/CODECZERO/BlogUsingReactJs/blob/main/MIT-LICENSE.txt]  file for details.
 
 Project Link: [https://github.com/yourusername/blog-website](https://github.com/yourusername/blog-website)
 
