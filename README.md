@@ -98,7 +98,7 @@ BlogUsingReactJs/
 ```
 
 - `public/`: Contains static files
-- `src/components/`: Reusable components
+- `src/Feature/`: Reusable components
 - `src/Feature/AppwriteBckend`: Contains Appwrite code to communicate
 - `src/App.js`: Main application component
 - `src/main.js`: Entry point of the application and react-router config
