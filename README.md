@@ -90,8 +90,8 @@ BlogUsingReactJs/
             ├──RTE.jsx
             ├──index.js
         ├──store
-      ├── App.js
-      ├── index.js
+      ├── App.jsx
+      ├── main.jsx
   ├── .gitignore
   ├── package.json
   ├── README.md
@@ -100,8 +100,8 @@ BlogUsingReactJs/
 - `public/`: Contains static files
 - `src/Feature/`: Reusable components
 - `src/Feature/AppwriteBckend`: Contains Appwrite code to communicate
-- `src/App.js`: Main application component
-- `src/main.js`: Entry point of the application and react-router config
+- `src/App.jsx`: Main application component
+- `src/main.jsx`: Entry point of the application and react-router config
 
 
 ## License
